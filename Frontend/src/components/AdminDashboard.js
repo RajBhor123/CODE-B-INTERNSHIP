@@ -1,4 +1,3 @@
-// // AdminDashboard.js - Updated to handle user data properly
 // import React, { useState, useEffect } from "react";
 // import { authHeader, API_URL } from "../services/authService";
 
@@ -25,33 +24,6 @@
 //         setUsers(data);
 //       } catch (err) {
 //         setError(err.message);
-//         // For demo purposes, we'll set some demo data
-//         setUsers([
-//           {
-//             id: 1,
-//             fullName: "Admin User",
-//             email: "admin@example.com",
-//             role: "ROLE_ADMIN",
-//             status: "active",
-//             enabled: true
-//           },
-//           {
-//             id: 2,
-//             fullName: "Regular User",
-//             email: "user@example.com",
-//             role: "ROLE_USER",
-//             status: "active",
-//             enabled: true
-//           },
-//           {
-//             id: 3,
-//             fullName: "Pending User",
-//             email: "pending@example.com",
-//             role: "ROLE_USER",
-//             status: "active",
-//             enabled: false
-//           }
-//         ]);
 //       } finally {
 //         setLoading(false);
 //       }
@@ -69,7 +41,7 @@
 //       <h2 className="text-2xl font-bold mb-6">Admin Dashboard</h2>
 //       {error && (
 //         <div className="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded mb-4">
-//           {error} (Using demo data)
+//           {error}
 //         </div>
 //       )}
 //       <div className="overflow-x-auto">
@@ -82,7 +54,6 @@
 //               <th className="py-2 px-4 border-b text-left">Role</th>
 //               <th className="py-2 px-4 border-b text-left">Status</th>
 //               <th className="py-2 px-4 border-b text-left">Verified</th>
-//               <th className="py-2 px-4 border-b text-left">Actions</th>
 //             </tr>
 //           </thead>
 //           <tbody>
@@ -94,17 +65,9 @@
 //                 <td className="py-2 px-4 border-b">{user.role?.replace("ROLE_", "")}</td>
 //                 <td className="py-2 px-4 border-b">{user.status}</td>
 //                 <td className="py-2 px-4 border-b">
-//                   <span className={`px-2 py-1 rounded ${user.enabled ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+//                   <span className={`px-2 py-1 rounded ${user.enabled ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}>
 //                     {user.enabled ? "Verified" : "Pending"}
 //                   </span>
-//                 </td>
-//                 <td className="py-2 px-4 border-b">
-//                   <button className="text-blue-500 hover:text-blue-700 mr-2">
-//                     Edit
-//                   </button>
-//                   <button className="text-red-500 hover:text-red-700">
-//                     Delete
-//                   </button>
 //                 </td>
 //               </tr>
 //             ))}
@@ -117,7 +80,7 @@
 
 // export default AdminDashboard;
 import React, { useState, useEffect } from "react";
-import { authHeader, API_URL } from "../services/authService";
+import { authHeader } from "../services/authService";
 
 const AdminDashboard = () => {
   const [users, setUsers] = useState([]);
@@ -127,7 +90,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch(`${API_URL}/admin/users`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/admin/users`, {
           headers: {
             ...authHeader(),
             "Content-Type": "application/json",

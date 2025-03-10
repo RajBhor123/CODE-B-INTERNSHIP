@@ -55,7 +55,4 @@ The **MIS & Invoicing System** is a robust platform designed to streamline clien
 
 ---
 
-## ✨ Contributors
-Thanks to all contributors who make this project possible! 🎉
-
 🚀 Happy Coding! 😊

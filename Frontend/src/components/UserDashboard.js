@@ -1,94 +1,7 @@
-// // // UserDashboard.js - Updated to use real user data
-// // import React, { useState, useEffect, useContext } from "react";
-// // import { authHeader, API_URL } from "../services/authService";
-// // import { AuthContext } from "../context/AuthContext";
 
-// // const UserDashboard = () => {
-// //   const [userData, setUserData] = useState(null);
-// //   const [loading, setLoading] = useState(true);
-// //   const [error, setError] = useState("");
-// //   const { currentUser } = useContext(AuthContext);
-
-// //   useEffect(() => {
-// //     const fetchUserData = async () => {
-// //       try {
-// //         // Try to fetch from API
-// //         const response = await fetch(`${API_URL}/user/profile`, {
-// //           headers: {
-// //             ...authHeader(),
-// //             "Content-Type": "application/json",
-// //           },
-// //         });
-
-// //         if (!response.ok) {
-// //           throw new Error("Failed to fetch user data");
-// //         }
-
-// //         const data = await response.json();
-// //         setUserData(data);
-// //       } catch (err) {
-// //         setError(err.message);
-// //         // Use data from auth context as fallback
-// //         if (currentUser) {
-// //           setUserData({
-// //             email: currentUser.email,
-// //             role: currentUser.role,
-// //             fullName: "User"  // We don't have this in the context
-// //           });
-// //         }
-// //       } finally {
-// //         setLoading(false);
-// //       }
-// //     };
-
-// //     fetchUserData();
-// //   }, [currentUser]);
-
-// //   if (loading) {
-// //     return <div className="text-center mt-10">Loading...</div>;
-// //   }
-
-// //   return (
-// //     <div className="max-w-4xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
-// //       <h2 className="text-2xl font-bold mb-6">User Dashboard</h2>
-// //       {error && (
-// //         <div className="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded mb-4">
-// //           {error} (Using available user data)
-// //         </div>
-// //       )}
-// //       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-// //         <div className="p-4 border rounded-lg">
-// //           <h3 className="text-lg font-semibold mb-2">Profile Information</h3>
-// //           <p>
-// //             <strong>Email:</strong> {userData?.email}
-// //           </p>
-// //           <p>
-// //             <strong>Role:</strong> {userData?.role?.replace("ROLE_", "")}
-// //           </p>
-// //           {userData?.fullName && (
-// //             <p>
-// //               <strong>Name:</strong> {userData.fullName}
-// //             </p>
-// //           )}
-// //         </div>
-// //         <div className="p-4 border rounded-lg">
-// //           <h3 className="text-lg font-semibold mb-2">Account Status</h3>
-// //           <p>
-// //             <strong>Status:</strong> Active
-// //           </p>
-// //           <p>
-// //             <strong>Account Type:</strong> {userData?.role?.includes("ADMIN") ? "Administrator" : "Regular User"}
-// //           </p>
-// //         </div>
-// //       </div>
-// //     </div>
-// //   );
-// // };
-
-// // export default UserDashboard;
 // import React, { useState, useEffect, useContext } from "react";
 // import { AuthContext } from "../context/AuthContext";
-// import { getUserProfile, updateUserProfile } from "../services/userService";
+// import { authHeader, API_URL } from "../services/authService";
 
 // const UserDashboard = () => {
 //   const { currentUser } = useContext(AuthContext);
@@ -97,6 +10,8 @@
 //     email: "",
 //     createdAt: "",
 //     lastLogin: "",
+//     passwordUpdatedAt: "",
+//     loginCount: 0
 //   });
 //   const [loading, setLoading] = useState(true);
 //   const [error, setError] = useState("");
@@ -109,15 +24,64 @@
 //     daysActive: 0,
 //     totalLogins: 0,
 //   });
+//   const [usingFallbackData, setUsingFallbackData] = useState(false);
+
+//   // Function to fetch user profile directly from the API
+//   const getUserProfile = async () => {
+//     try {
+//       const response = await fetch(`${API_URL}/user/profile`, {
+//         headers: {
+//           ...authHeader(),
+//           "Content-Type": "application/json",
+//         },
+//       });
+
+//       if (!response.ok) {
+//         throw new Error(`Error ${response.status}: ${response.statusText}`);
+//       }
+
+//       const data = await response.json();
+//       return data;
+//     } catch (err) {
+//       throw new Error(err.message || "Failed to fetch user profile");
+//     }
+//   };
+
+//   // Function to update user profile
+//   const updateUserProfile = async (updatedData) => {
+//     try {
+//       const response = await fetch(`${API_URL}/user/profile/update`, {
+//         method: 'PUT',
+//         headers: {
+//           ...authHeader(),
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify(updatedData),
+//       });
+
+//       if (!response.ok) {
+//         throw new Error(`Error ${response.status}: ${response.statusText}`);
+//       }
+
+//       return await response.json();
+//     } catch (err) {
+//       throw new Error(err.message || "Failed to update user profile");
+//     }
+//   };
 
 //   useEffect(() => {
 //     const fetchUserProfile = async () => {
+//       setLoading(true);
+//       setError("");
+//       setUsingFallbackData(false);
+      
 //       try {
-//         setLoading(true);
+//         // First try to get data from the API
 //         const data = await getUserProfile();
+        
 //         setUserProfile(data);
 //         setFormData({
-//           fullName: data.fullName,
+//           fullName: data.fullName || "",
 //         });
         
 //         // Calculate stats
@@ -132,14 +96,45 @@
 //           });
 //         }
 //       } catch (err) {
-//         setError("Failed to load user profile: " + err.message);
+//         console.error("API Error:", err.message);
+        
+//         // Fallback to using data from AuthContext if available
+//         if (currentUser) {
+//           setUsingFallbackData(true);
+//           setError("Failed to load user profile");
+          
+//           const fallbackData = {
+//             fullName: currentUser.fullName || "User",
+//             email: currentUser.email || "",
+//             createdAt: currentUser.createdAt || new Date().toISOString(),
+//             lastLogin: currentUser.lastLogin || new Date().toISOString(),
+//             loginCount: currentUser.loginCount || 0
+//           };
+          
+//           setUserProfile(fallbackData);
+//           setFormData({
+//             fullName: fallbackData.fullName,
+//           });
+          
+//           // Calculate stats from fallback data
+//           const createdDate = new Date(fallbackData.createdAt);
+//           const today = new Date();
+//           const diffTime = Math.abs(today - createdDate);
+//           const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+//           setStats({
+//             daysActive: diffDays,
+//             totalLogins: fallbackData.loginCount || 0,
+//           });
+//         } else {
+//           setError("Failed to load user profile");
+//         }
 //       } finally {
 //         setLoading(false);
 //       }
 //     };
 
 //     fetchUserProfile();
-//   }, []);
+//   }, [currentUser]);
 
 //   const handleChange = (e) => {
 //     setFormData({
@@ -154,10 +149,10 @@
 //     setSuccess("");
     
 //     try {
-//       await updateUserProfile(formData);
+//       const updatedProfile = await updateUserProfile(formData);
 //       setUserProfile({
 //         ...userProfile,
-//         ...formData,
+//         ...updatedProfile,
 //       });
 //       setSuccess("Profile updated successfully!");
 //       setEditMode(false);
@@ -184,10 +179,10 @@
 //     <div className="dashboard-container fade-in">
 //       <h1 className="home-title">User Dashboard</h1>
 //       <p className="home-subtitle">
-//         Welcome back, {userProfile.fullName}! Manage your account details here.
+//         Welcome back, {userProfile.fullName || "User"}! Manage your account details here.
 //       </p>
       
-//       {error && <div className="alert alert-danger">{error}</div>}
+//       {/* {usingFallbackData && error && <div className="alert alert-danger">{error}</div>} */}
 //       {success && <div className="alert alert-success">{success}</div>}
       
 //       <div className="dashboard-grid">
@@ -230,16 +225,18 @@
 //               <div className="dashboard-info">
 //                 <div className="info-item">
 //                   <div className="info-label">Full Name:</div>
-//                   <div className="info-value">{userProfile.fullName}</div>
+//                   <div className="info-value">{userProfile.fullName || "Not set"}</div>
 //                 </div>
 //                 <div className="info-item">
 //                   <div className="info-label">Email:</div>
-//                   <div className="info-value">{userProfile.email}</div>
+//                   <div className="info-value">{userProfile.email || "Not available"}</div>
 //                 </div>
 //                 <div className="info-item">
 //                   <div className="info-label">Member Since:</div>
 //                   <div className="info-value">
-//                     {new Date(userProfile.createdAt).toLocaleDateString()}
+//                     {userProfile.createdAt 
+//                       ? new Date(userProfile.createdAt).toLocaleDateString() 
+//                       : 'N/A'}
 //                   </div>
 //                 </div>
 //                 <div className="info-item">
@@ -326,7 +323,7 @@
 // export default UserDashboard;
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { authHeader, API_URL } from "../services/authService";
+import { authHeader } from "../services/authService";
 
 const UserDashboard = () => {
   const { currentUser } = useContext(AuthContext);
@@ -354,7 +351,7 @@ const UserDashboard = () => {
   // Function to fetch user profile directly from the API
   const getUserProfile = async () => {
     try {
-      const response = await fetch(`${API_URL}/user/profile`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/user/profile`, {
         headers: {
           ...authHeader(),
           "Content-Type": "application/json",
@@ -375,7 +372,7 @@ const UserDashboard = () => {
   // Function to update user profile
   const updateUserProfile = async (updatedData) => {
     try {
-      const response = await fetch(`${API_URL}/user/profile/update`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/user/profile/update`, {
         method: 'PUT',
         headers: {
           ...authHeader(),

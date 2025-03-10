@@ -286,7 +286,7 @@ const Register = () => {
                 />
               </div>
               
-              <div className="form-group">
+              {/* <div className="form-group">
                 <div className="password-requirements">
                   <p className="requirement-title">Password must contain:</p>
                   <ul className="requirement-list">
@@ -296,7 +296,7 @@ const Register = () => {
                     <li>At least one special character</li>
                   </ul>
                 </div>
-              </div>
+              </div> */}
               
               <button
                 type="submit"

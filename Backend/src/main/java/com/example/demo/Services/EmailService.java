@@ -22,15 +22,15 @@ public class EmailService {
     public void sendHtmlEmail(String to, String subject, String htmlContent) throws MessagingException {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
-        
+
         helper.setFrom(fromEmail);
         helper.setTo(to);
         helper.setSubject(subject);
         helper.setText(htmlContent, true); // true indicates this is HTML content
-        
+
         mailSender.send(message);
     }
-    
+
     // Email template for verification
     public String createVerificationEmailTemplate(String name, String verificationUrl) {
         return "<!DOCTYPE html>"
@@ -64,7 +64,7 @@ public class EmailService {
                 + "</body>"
                 + "</html>";
     }
-    
+
     // Email template for password reset
     public String createPasswordResetEmailTemplate(String name, String resetUrl, int expiryHours) {
         return "<!DOCTYPE html>"

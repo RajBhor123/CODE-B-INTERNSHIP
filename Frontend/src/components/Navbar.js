@@ -21,8 +21,12 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="container navbar-container">
-        <Link to="/home" className="navbar-brand">
-          MIS
+        <Link to="/home" className="navbar-brand"><img
+            src="/logo.jpg"
+            alt="MIS Logo"
+            className="navbar-logo"
+          />
+        MIS
         </Link>
         <div className="navbar-links">
           {currentUser ? (

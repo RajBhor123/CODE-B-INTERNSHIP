@@ -112,6 +112,12 @@ body {
   top: 0;
   z-index: 100;
 }
+.navbar-logo {
+  height: 35px; /* Adjust to make it smaller */
+  width: auto;
+  margin-right: 8px;
+  vertical-align: middle;
+}
 
 .navbar-container {
   display: flex;

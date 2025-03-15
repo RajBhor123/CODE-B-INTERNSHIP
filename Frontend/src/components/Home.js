@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { BarChart3, Users, FileText, Clock, ShieldCheck, CreditCard } from "lucide-react";
+import { BarChart3, Users, FileText, Clock, ShieldCheck, CreditCard, UserCircle, ShieldAlert } from "lucide-react";
 
 const Home = () => {
   return (
@@ -13,6 +13,60 @@ const Home = () => {
         </p>
       </div>
       
+      {/* Auth Sections */}
+      <div className="feature-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        {/* User Section */}
+        <div className="feature-card bg-white rounded-lg shadow-md p-6 transition-all hover:shadow-lg">
+          <div className="feature-icon text-blue-600 mb-4 flex justify-center">
+            <UserCircle size={48} />
+          </div>
+          <h3 className="feature-title text-xl font-semibold mb-2 text-center">User Access</h3>
+          <p className="feature-text text-gray-600 mb-4">
+            For sales team members and regular users. Access client management, invoicing, and payment tracking features based on your assigned role.
+          </p>
+          <div className="flex justify-center space-x-6">
+            <Link 
+              to="/login" 
+              className="btn btn-primary px-8 py-3 rounded-md font-medium"
+            >
+              Login
+            </Link>
+            <Link 
+              to="/register" 
+              className="btn btn-secondary px-8 py-3 rounded-md font-medium"
+            >
+              Register
+            </Link>
+          </div>
+        </div>
+        
+        {/* Admin Section */}
+        <div className="feature-card bg-white rounded-lg shadow-md p-6 transition-all hover:shadow-lg">
+          <div className="feature-icon text-blue-600 mb-4 flex justify-center">
+            <ShieldAlert size={48} />
+          </div>
+          <h3 className="feature-title text-xl font-semibold mb-2 text-center">Admin Portal</h3>
+          <p className="feature-text text-gray-600 mb-4">
+            For administrators and system managers. Complete system control with user management, advanced reporting, and configuration options.
+          </p>
+          <div className="flex justify-center space-x-6">
+            <Link 
+              to="/login" 
+              className="btn btn-primary px-8 py-3 rounded-md font-medium"
+            >
+              Admin Login
+            </Link>
+            <Link 
+              to="/register" 
+              className="btn btn-secondary px-8 py-3 rounded-md font-medium"
+            >
+              Admin Register
+            </Link>
+          </div>
+        </div>
+      </div>
+      
+      {/* Features Section */}
       <div className="feature-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
         <div className="feature-card bg-white rounded-lg shadow-md p-6 transition-all hover:shadow-lg">
           <div className="feature-icon text-blue-600 mb-4 flex justify-center">
@@ -75,11 +129,9 @@ const Home = () => {
         </div>
       </div>
       
-      
-{/*       
       <div className="text-center text-gray-500 text-sm">
         <p>© 2025 MIS & Invoicing System. All rights reserved.</p>
-      </div> */}
+      </div>
     </div>
   );
 };

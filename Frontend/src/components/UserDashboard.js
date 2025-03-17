@@ -636,6 +636,26 @@
 // export default GroupManagement;
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+// Import Font Awesome components
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { 
+  faTachometerAlt, 
+  faUsers, 
+  faLink, 
+  faCopyright, 
+  faMapMarkerAlt, 
+  faCalculator, 
+  faFileInvoice,
+  faExclamationCircle,
+  faCheckCircle,
+  faPlusCircle,
+  faEdit,
+  faTrashAlt,
+  faSave,
+  faTimes,
+  faSyncAlt,
+  faFolderOpen
+} from "@fortawesome/free-solid-svg-icons";
 
 const GroupManagement = () => {
   const [groups, setGroups] = useState([]);
@@ -776,31 +796,31 @@ const GroupManagement = () => {
           </div>
           <div className="sidebar-menu">
             <div className="menu-item">
-              <i className="fas fa-tachometer-alt menu-icon"></i>
+              <FontAwesomeIcon icon={faTachometerAlt} className="menu-icon" />
               <span>Dashboard</span>
             </div>
             <div className="menu-item active">
-              <i className="fas fa-users menu-icon"></i>
+              <FontAwesomeIcon icon={faUsers} className="menu-icon" />
               <span>Manage Groups</span>
             </div>
             <div className="menu-item">
-              <i className="fas fa-link menu-icon"></i>
+              <FontAwesomeIcon icon={faLink} className="menu-icon" />
               <span>Manage Chain</span>
             </div>
             <div className="menu-item">
-              <i className="fas fa-copyright menu-icon"></i>
+              <FontAwesomeIcon icon={faCopyright} className="menu-icon" />
               <span>Manage Brands</span>
             </div>
             <div className="menu-item">
-              <i className="fas fa-map-marker-alt menu-icon"></i>
+              <FontAwesomeIcon icon={faMapMarkerAlt} className="menu-icon" />
               <span>Manage SubZones</span>
             </div>
             <div className="menu-item">
-              <i className="fas fa-calculator menu-icon"></i>
+              <FontAwesomeIcon icon={faCalculator} className="menu-icon" />
               <span>Manage Estimate</span>
             </div>
             <div className="menu-item">
-              <i className="fas fa-file-invoice menu-icon"></i>
+              <FontAwesomeIcon icon={faFileInvoice} className="menu-icon" />
               <span>Manage Invoices</span>
             </div>
           </div>
@@ -816,7 +836,7 @@ const GroupManagement = () => {
           {/* Messages */}
           {error && (
             <div className="alert alert-danger">
-              <i className="fas fa-exclamation-circle alert-icon"></i>
+              <FontAwesomeIcon icon={faExclamationCircle} className="alert-icon" />
               {error}
               <button className="close-btn" onClick={() => setError(null)}>×</button>
             </div>
@@ -824,7 +844,7 @@ const GroupManagement = () => {
           
           {success && (
             <div className="alert alert-success">
-              <i className="fas fa-check-circle alert-icon"></i>
+              <FontAwesomeIcon icon={faCheckCircle} className="alert-icon" />
               <span className="alert-message">{success}</span>
               <button className="close-btn" onClick={() => setSuccess(null)}>×</button>
             </div>
@@ -840,7 +860,7 @@ const GroupManagement = () => {
                     <div className="card-value">{totalGroups}</div>
                   </div>
                   <div className="stats-card-icon">
-                    <i className="fas fa-users"></i>
+                    <FontAwesomeIcon icon={faUsers} />
                   </div>
                 </div>
 
@@ -853,7 +873,7 @@ const GroupManagement = () => {
                   }}
                   disabled={loading}
                 >
-                  <i className="fas fa-plus-circle"></i>
+                  <FontAwesomeIcon icon={faPlusCircle} />
                   {loading ? "Loading..." : "Add New Group"}
                 </button>
               </div>
@@ -880,7 +900,7 @@ const GroupManagement = () => {
                       <tr>
                         <td colSpan="3" className="empty-cell">
                           <div className="empty-state">
-                            <i className="fas fa-folder-open empty-icon"></i>
+                            <FontAwesomeIcon icon={faFolderOpen} className="empty-icon" />
                             <p>No groups found</p>
                           </div>
                         </td>
@@ -897,7 +917,7 @@ const GroupManagement = () => {
                               disabled={loading}
                               title="Edit Group"
                             >
-                              <i className="fas fa-edit"></i>
+                              <FontAwesomeIcon icon={faEdit} />
                               Edit
                             </button>
                             <button 
@@ -906,7 +926,7 @@ const GroupManagement = () => {
                               disabled={loading}
                               title="Delete Group"
                             >
-                              <i className="fas fa-trash-alt"></i>
+                              <FontAwesomeIcon icon={faTrashAlt} />
                               Delete
                             </button>
                           </td>
@@ -948,7 +968,7 @@ const GroupManagement = () => {
                     </>
                   ) : (
                     <>
-                      <i className="fas fa-save"></i>
+                      <FontAwesomeIcon icon={faSave} />
                       Add Group
                     </>
                   )}
@@ -962,7 +982,7 @@ const GroupManagement = () => {
                   }}
                   disabled={loading}
                 >
-                  <i className="fas fa-times"></i>
+                  <FontAwesomeIcon icon={faTimes} />
                   Cancel
                 </button>
               </div>
@@ -997,7 +1017,7 @@ const GroupManagement = () => {
                     </>
                   ) : (
                     <>
-                      <i className="fas fa-sync-alt"></i>
+                      <FontAwesomeIcon icon={faSyncAlt} />
                       Update
                     </>
                   )}
@@ -1011,7 +1031,7 @@ const GroupManagement = () => {
                   }}
                   disabled={loading}
                 >
-                  <i className="fas fa-times"></i>
+                  <FontAwesomeIcon icon={faTimes} />
                   Cancel
                 </button>
               </div>

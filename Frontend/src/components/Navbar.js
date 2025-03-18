@@ -31,9 +31,9 @@ const Navbar = () => {
         <div className="navbar-links">
           {currentUser ? (
             <>
-              <Link to="/dashboard" className="navbar-link">
+              {/* <Link to="/dashboard" className="navbar-link">
                 Dashboard
-              </Link>
+              </Link> */}
               {isAdmin() && (
                 <Link to="/admin" className="navbar-link">
                   Admin
@@ -45,6 +45,11 @@ const Navbar = () => {
               >
                 Logout
               </button>
+              <div className="user-profile">
+                <div className="avatar-placeholder">
+                  {currentUser.email && currentUser.email.charAt(0).toUpperCase()}
+                </div>
+              </div>
             </>
           ) : (
             <>

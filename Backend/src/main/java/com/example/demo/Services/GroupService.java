@@ -124,4 +124,8 @@ public class GroupService {
         group.setActive(false);
         groupRepository.save(group);
     }
+
+    public long getGroupCount() {
+        return groupRepository.count();
+    }
 }

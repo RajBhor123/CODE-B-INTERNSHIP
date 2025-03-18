@@ -111,6 +111,8 @@ public class SecurityConfig {
                         // Group Management - Allow authenticated users
                         .requestMatchers("/api/groups/**").permitAll() // Allow API access
 
+                        .requestMatchers("/api/chains/**").permitAll()
+
                         // Admin only endpoints
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
 

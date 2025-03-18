@@ -1,4 +1,3 @@
-
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
@@ -32,7 +31,7 @@ function App() {
 
               {/* Protected routes */}
               <Route element={<PrivateRoute allowedRoles={["USER", "ADMIN"]} />}>
-                <Route path="/dashboard" element={<UserDashboard />} />
+                <Route path="/dashboard/*" element={<UserDashboard />} />
               </Route>
 
               <Route element={<PrivateRoute allowedRoles={["ADMIN"]} />}>

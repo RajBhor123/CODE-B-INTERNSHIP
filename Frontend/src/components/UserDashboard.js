@@ -1049,6 +1049,7 @@ import { Routes, Route } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import GroupManagement from "./GroupManagement";
 import ChainManagement from "./ChainManagement";
+import BrandManagement from "./BrandManagement"; // Import the new component
 
 const UserDashboard = () => {
   return (
@@ -1070,6 +1071,7 @@ const UserDashboard = () => {
             } />
             <Route path="/groups" element={<GroupManagement />} />
             <Route path="/chain" element={<ChainManagement />} />
+            <Route path="/brands" element={<BrandManagement />} /> {/* Add this route */}
             {/* Add other routes for different management screens */}
             <Route path="*" element={
               <div className="page-header">

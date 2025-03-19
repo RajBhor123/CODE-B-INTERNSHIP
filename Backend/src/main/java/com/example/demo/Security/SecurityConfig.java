@@ -113,6 +113,8 @@ public class SecurityConfig {
 
                         .requestMatchers("/api/chains/**").permitAll()
 
+                        .requestMatchers("/api/brands/**").permitAll()
+
                         // Admin only endpoints
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
 

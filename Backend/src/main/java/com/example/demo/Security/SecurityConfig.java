@@ -117,6 +117,8 @@ public class SecurityConfig {
 
                         .requestMatchers("/api/zones/**").permitAll()
 
+                        .requestMatchers("/api/estimates/**").permitAll()
+
                         // Admin only endpoints
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
 

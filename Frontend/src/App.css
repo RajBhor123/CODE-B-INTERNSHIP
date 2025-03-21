@@ -3150,3 +3150,156 @@ body {
 .filter-link:hover {
   text-decoration: underline;
 }
+/* Form styling to match the images */
+.estimate-form {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.estimate-form h3 {
+  color: #333;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.form-section {
+  margin-bottom: 20px;
+}
+
+.form-section h4 {
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+}
+
+.form-group {
+  flex: 1;
+  min-width: 250px;
+  padding: 0 10px;
+  margin-bottom: 15px;
+}
+
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.form-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Button styling */
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.submit-btn {
+  background-color: #1e88e5;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cancel-btn {
+  background-color: #e0e0e0;
+  color: #333;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Refresh button styling */
+.refresh-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.refresh-btn {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Edit and Delete buttons styling */
+.action-buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.edit-btn {
+  background-color: #ffc107;
+  color: #333;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Remove $ symbol - modify this function in the JavaScript */
+/* Update the calculateTotalCost and calculateEditTotalCost functions to remove the $ */
+/* 
+calculateTotalCost = () => {
+  return (newEstimate.quantity * newEstimate.costPerUnit).toFixed(2);
+};
+
+calculateEditTotalCost = () => {
+  return (editEstimate.quantity * editEstimate.costPerUnit).toFixed(2);
+};
+*/
+
+/* Loading spinner */
+.btn-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spinner 0.8s linear infinite;
+  margin-right: 8px;
+}
+
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}

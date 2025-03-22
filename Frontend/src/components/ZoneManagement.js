@@ -15,7 +15,9 @@ import {
   faFilter,
   faBuilding,
   faTags,
-  faLayerGroup
+  faLayerGroup,
+  faUsers,
+  faLink
 } from "@fortawesome/free-solid-svg-icons";
 
 const ZoneManagement = () => {
@@ -292,7 +294,7 @@ const ZoneManagement = () => {
                 <div className="card-value">{totalGroups}</div>
               </div>
               <div className="stats-card-icon">
-                <FontAwesomeIcon icon={faLayerGroup} />
+                <FontAwesomeIcon icon={faUsers} />
               </div>
             </div>
 
@@ -303,7 +305,7 @@ const ZoneManagement = () => {
                 <div className="card-value">{totalChains}</div>
               </div>
               <div className="stats-card-icon">
-                <FontAwesomeIcon icon={faBuilding} />
+                <FontAwesomeIcon icon={faLink} />
               </div>
             </div>
 

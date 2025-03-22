@@ -11,6 +11,7 @@ import {
   faTimes,
   faSyncAlt,
   faFolderOpen,
+  faUsers,
   faLink
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -293,7 +294,7 @@ const ChainManagement = () => {
                 <div className="card-value">{totalGroups}</div>
               </div>
               <div className="stats-card-icon">
-                <FontAwesomeIcon icon={faFolderOpen} />
+                <FontAwesomeIcon icon={faUsers} />
               </div>
             </div>
 
@@ -401,7 +402,7 @@ const ChainManagement = () => {
                             cursor: "pointer",
                             width: "100%"
                           }}
-                        >
+                        ><FontAwesomeIcon icon={faEdit} />
                           Edit
                         </button>
                       </td>
@@ -420,7 +421,7 @@ const ChainManagement = () => {
                             cursor: "pointer",
                             width: "100%"
                           }}
-                        >
+                        ><FontAwesomeIcon icon={faTrashAlt} />
                           Delete
                         </button>
                       </td>

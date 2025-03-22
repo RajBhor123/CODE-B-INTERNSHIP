@@ -11,7 +11,10 @@ import {
   faTimes,
   faSyncAlt,
   faFolderOpen,
-  faCopyright
+  faCopyright,
+  faUsers,
+  faLink,
+  faTags
 } from "@fortawesome/free-solid-svg-icons";
 
 const BrandManagement = () => {
@@ -247,7 +250,7 @@ const BrandManagement = () => {
                 <div className="card-value">{groups.length}</div>
             </div>
           <div className="stats-card-icon">
-                <FontAwesomeIcon icon={faFolderOpen} />
+                <FontAwesomeIcon icon={faUsers} />
         </div>
          </div>
             
@@ -257,7 +260,7 @@ const BrandManagement = () => {
                 <div className="card-value">{chains.length}</div>
                 </div>
                 <div className="stats-card-icon">
-                <FontAwesomeIcon icon={faFolderOpen} />
+                <FontAwesomeIcon icon={faLink} />
                 </div>
             </div>
 
@@ -267,7 +270,7 @@ const BrandManagement = () => {
                 <div className="card-value">{totalBrands}</div>
                 </div>
                 <div className="stats-card-icon">
-                <FontAwesomeIcon icon={faCopyright} />
+                <FontAwesomeIcon icon={faTags} />
                 </div>
             </div>
 
@@ -366,7 +369,7 @@ const BrandManagement = () => {
                           className="edit-btn"
                           onClick={() => initiateEditBrand(brand)}
                           disabled={loading}
-                        >
+                        ><FontAwesomeIcon icon={faEdit} />
                           Edit
                         </button>
                       </td>
@@ -375,7 +378,7 @@ const BrandManagement = () => {
                           className="delete-btn" 
                           onClick={() => handleDeleteBrand(brand.brandId)}
                           disabled={loading}
-                        >
+                        ><FontAwesomeIcon icon={faTrashAlt} />
                           Delete
                         </button>
                       </td>

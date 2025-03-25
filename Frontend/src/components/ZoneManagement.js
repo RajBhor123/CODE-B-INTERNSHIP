@@ -404,7 +404,7 @@ const ZoneManagement = () => {
           
           {/* Zones Table */}
           <div className="table-container">
-            <table className="groups-table">
+            <table className="zone-table">
               <thead>
                 <tr>
                   <th>Sr.No</th>

@@ -600,7 +600,7 @@ const initiateEditEstimate = (estimate) => {
             {/* Filter options */}
             <div className="filter-section">
               <div className="filter-row">
-                <div className="filter-item">
+                <div className="estimate-filter-item">
                   <label htmlFor="groupFilter">Filter by Group:</label>
                   <select
                     id="groupFilter"
@@ -617,7 +617,7 @@ const initiateEditEstimate = (estimate) => {
                   </select>
                 </div>
                 
-                <div className="filter-item">
+                <div className="estimate-filter-item">
                   <label htmlFor="companyFilter">Filter by Company:</label>
                   <select
                     id="companyFilter"
@@ -634,7 +634,7 @@ const initiateEditEstimate = (estimate) => {
                   </select>
                 </div>
                 
-                <div className="filter-item">
+                <div className="estimate-filter-item">
                   <label htmlFor="brandFilter">Filter by Brand:</label>
                   <select
                     id="brandFilter"
@@ -651,7 +651,7 @@ const initiateEditEstimate = (estimate) => {
                   </select>
                 </div>
                 
-                <div className="filter-item">
+                <div className="estimate-filter-item">
                   <label htmlFor="zoneFilter">Filter by Zone:</label>
                   <select
                     id="zoneFilter"
@@ -672,7 +672,7 @@ const initiateEditEstimate = (estimate) => {
 
             {/* Add Estimate Button */}
             <button 
-              className="add-brand-btn" 
+              className="add-estimate-btn" 
               onClick={() => {
                 setShowAddEstimate(true);
                 clearMessages();
@@ -688,7 +688,7 @@ const initiateEditEstimate = (estimate) => {
 
           {/* Estimates Table */}
           <div className="table-container">
-            <table className="brands-table">
+            <table className="estimate-table">
               <thead>
                 <tr>
                   <th>Sr.No</th>
@@ -734,20 +734,44 @@ const initiateEditEstimate = (estimate) => {
                       <td>{estimate.costPerUnit}</td>
                       <td>{estimate.totalCost}</td>
                       <td>{formatDate(estimate.deliveryDate)}</td>
-                      <td className="action-buttons">
+                      <td className="action-buttons" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                         <button
                           className="edit-btn"
+                          style={{
+                            backgroundColor: "#007bff",
+                            color: "white",
+                            border: "none",
+                            margin:"21px",
+                            padding: "8px 12px",
+                            borderRadius: "4px",
+                            cursor: "pointer",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center"
+                          }}
                           onClick={() => initiateEditEstimate(estimate)}
                           disabled={loading}
                         >
-                          <FontAwesomeIcon icon={faEdit} />
+                           <FontAwesomeIcon icon={faEdit} />Edit
                         </button>
                         <button 
                           className="delete-btn" 
+                          style={{
+                            backgroundColor: "#dc3545",
+                            color: "white",
+                            border: "none",
+                            margin:"21px",
+                            padding: "8px 12px",
+                            borderRadius: "4px",
+                            cursor: "pointer",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center"
+                          }}
                           onClick={() => handleDeleteEstimate(estimate.estimateId)}
                           disabled={loading}
                         >
-                          <FontAwesomeIcon icon={faTrashAlt} />
+                          <FontAwesomeIcon icon={faTrashAlt} />Delete
                         </button>
                       </td>
                     </tr>

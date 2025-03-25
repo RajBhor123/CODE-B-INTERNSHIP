@@ -197,7 +197,7 @@ const GroupManagement = () => {
           </div>
 
           {/* Groups Table */}
-          <div className="table-container">
+          <div className="groups-table-container">
             <table className="groups-table">
               <thead>
                 <tr>

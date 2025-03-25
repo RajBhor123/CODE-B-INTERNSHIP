@@ -351,8 +351,8 @@ const ChainManagement = () => {
           </div>
 
           {/* Chains Table */}
-          <div className="table-container">
-            <table className="groups-table">
+          <div className="chains-table-container">
+            <table className="chains-table">
               <thead>
                 <tr>
                   <th>Sr.No</th>
@@ -400,7 +400,7 @@ const ChainManagement = () => {
                             padding: "8px 12px",
                             borderRadius: "4px",
                             cursor: "pointer",
-                            width: "100%"
+                            width: ""
                           }}
                         ><FontAwesomeIcon icon={faEdit} />
                           Edit
@@ -419,7 +419,7 @@ const ChainManagement = () => {
                             padding: "8px 12px",
                             borderRadius: "4px",
                             cursor: "pointer",
-                            width: "100%"
+                            width: ""
                           }}
                         ><FontAwesomeIcon icon={faTrashAlt} />
                           Delete

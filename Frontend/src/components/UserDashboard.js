@@ -1052,6 +1052,8 @@ import ChainManagement from "./ChainManagement";
 import BrandManagement from "./BrandManagement"; // Import the new component
 import ZoneManagement from "./ZoneManagement";
 import EstimateManagement from "./EstimateManagement";
+import InvoiceManagement from "./InvoiceManagement";
+import InvoiceCreation from "./InvoiceCreation";
 
 const UserDashboard = () => {
   return (
@@ -1077,6 +1079,8 @@ const UserDashboard = () => {
             {/* Add other routes for different management screens */}
             <Route path="/subzones" element={<ZoneManagement />} />
             <Route path="/estimate" element={<EstimateManagement />} />
+            <Route path="/invoices" element={<InvoiceManagement />} />
+            <Route path="/create-invoice" element={<InvoiceCreation />} />
             <Route path="*" element={
               <div className="page-header">
                 <h1>Page Not Found</h1>

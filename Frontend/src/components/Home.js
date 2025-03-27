@@ -14,7 +14,7 @@ const Home = () => {
       </div>
       
       {/* Auth Sections */}
-      <div className="feature-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+      <div className="feature-grid-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
         {/* User Section */}
         <div className="feature-card bg-white rounded-lg shadow-md p-6 transition-all hover:shadow-lg">
           <div className="feature-icon text-blue-600 mb-4 flex justify-center">

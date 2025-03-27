@@ -1044,12 +1044,63 @@
 // };
 
 // export default GroupManagement;
+// import React from "react";
+// import { Routes, Route } from "react-router-dom";
+// import Sidebar from "./Sidebar";
+// import GroupManagement from "./GroupManagement";
+// import ChainManagement from "./ChainManagement";
+// import BrandManagement from "./BrandManagement"; // Import the new component
+// import ZoneManagement from "./ZoneManagement";
+// import EstimateManagement from "./EstimateManagement";
+// import InvoiceManagement from "./InvoiceManagement";
+// import InvoiceCreation from "./InvoiceCreation";
+
+// const UserDashboard = () => {
+//   return (
+//     <div className="dashboard-container">
+//       <div className="main-content">
+//         <Sidebar />
+        
+//         <div className="content-area">
+//           <Routes>
+//             <Route path="/" element={
+//               <div className="page-header">
+//                 <h1>Dashboard</h1>
+//                 <p>Welcome to your user dashboard</p>
+//                 <div className="dashboard-welcome">
+//                   <h2>Welcome to the Management System</h2>
+//                   <p>Please select an option from the sidebar to get started.</p>
+//                 </div>
+//               </div>
+//             } />
+//             <Route path="/groups" element={<GroupManagement />} />
+//             <Route path="/chain" element={<ChainManagement />} />
+//             <Route path="/brands" element={<BrandManagement />} /> {/* Add this route */}
+//             {/* Add other routes for different management screens */}
+//             <Route path="/subzones" element={<ZoneManagement />} />
+//             <Route path="/estimate" element={<EstimateManagement />} />
+//             <Route path="/invoices" element={<InvoiceManagement />} />
+//             <Route path="/create-invoice" element={<InvoiceCreation />} />
+//             <Route path="*" element={
+//               <div className="page-header">
+//                 <h1>Page Not Found</h1>
+//                 <p>The requested page does not exist.</p>
+//               </div>
+//             } />
+//           </Routes>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default UserDashboard;
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import GroupManagement from "./GroupManagement";
 import ChainManagement from "./ChainManagement";
-import BrandManagement from "./BrandManagement"; // Import the new component
+import BrandManagement from "./BrandManagement";
 import ZoneManagement from "./ZoneManagement";
 import EstimateManagement from "./EstimateManagement";
 import InvoiceManagement from "./InvoiceManagement";
@@ -1064,19 +1115,78 @@ const UserDashboard = () => {
         <div className="content-area">
           <Routes>
             <Route path="/" element={
-              <div className="page-header">
-                <h1>Dashboard</h1>
-                <p>Welcome to your user dashboard</p>
-                <div className="dashboard-welcome">
-                  <h2>Welcome to the Management System</h2>
-                  <p>Please select an option from the sidebar to get started.</p>
+              <div className="dashboard-home">
+                <div className="page-header">
+                <h1>MIS & Invoicing System</h1>
+                   <p>Welcome !!</p>
+                    <div className="dashboard-welcome">
+                        <h2>Welcome to the User Management System</h2>
+                        <p>Please select an option from the sidebar to get started.</p>
+                    </div>
+                  
+                </div>
+                
+                <div className="dashboard-overview">
+                  <div className="overview-section">
+                    <h2>🚀 System Overview</h2>
+                    <p>A comprehensive platform for efficient sales management and invoicing.</p>
+                  </div>
+                  
+                  <div className="key-features">
+                    <h3>🎯 Key Features</h3>
+                    <div className="feature-grid-user">
+                      <div className="feature-card-user">
+                        <h4>🔐 User Authentication</h4>
+                        <ul>
+                          <li>Secure email-based login</li>
+                          <li>Role-based access control</li>
+                          <li>Session management</li>
+                        </ul>
+                      </div>
+                      
+                      <div className="feature-card-user">
+                        <h4>📊 Dashboard Insights</h4>
+                        <ul>
+                          <li>Comprehensive statistics</li>
+                          <li>Responsive design</li>
+                          <li>Intuitive navigation</li>
+                        </ul>
+                      </div>
+                      
+                      <div className="feature-card-user">
+                        <h4>📜 Sales Management</h4>
+                        <ul>
+                          <li>Client data tracking</li>
+                          <li>Chain & brand monitoring</li>
+                          <li>Estimate creation</li>
+                        </ul>
+                      </div>
+                      
+                      <div className="feature-card-user">
+                        <h4>💳 Invoice Automation</h4>
+                        <ul>
+                          <li>Automated invoice generation</li>
+                          <li>Payment tracking</li>
+                          <li>GST compliance</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="quick-access">
+                    <h3>🔍 Quick Access</h3>
+                    <div className="quick-links">
+                      <Link to="/dashboard/estimate" className="quick-link">Create Invoice</Link>
+                      <Link to="/dashboard/invoices" className="quick-link">View Invoices</Link>
+                      <Link to="/dashboard/estimate" className="quick-link">Manage Estimates</Link>
+                    </div>
+                  </div>
                 </div>
               </div>
             } />
             <Route path="/groups" element={<GroupManagement />} />
             <Route path="/chain" element={<ChainManagement />} />
-            <Route path="/brands" element={<BrandManagement />} /> {/* Add this route */}
-            {/* Add other routes for different management screens */}
+            <Route path="/brands" element={<BrandManagement />} />
             <Route path="/subzones" element={<ZoneManagement />} />
             <Route path="/estimate" element={<EstimateManagement />} />
             <Route path="/invoices" element={<InvoiceManagement />} />
